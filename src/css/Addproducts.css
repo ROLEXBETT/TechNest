@@ -1,0 +1,61 @@
+.add-product-wrapper {
+    min-height: 80vh;
+    padding-top: 50px;
+}
+
+.product-card {
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.custom-input {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background-color: #fff;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+}
+
+/* Image Upload Styling */
+.upload-box {
+    border: 2px dashed #dee2e6;
+    border-radius: 12px;
+    padding: 10px;
+    transition: 0.3s;
+    background: #fbfcfd;
+}
+
+.upload-box:hover {
+    border-color: #0d6efd;
+    background: #f0f7ff;
+}
+
+.upload-label {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    color: #6c757d;
+}
+
+.img-preview {
+    max-height: 150px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.btn-primary {
+    border-radius: 10px;
+    background: linear-gradient(45deg, #0d6efd, #0052cc);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
