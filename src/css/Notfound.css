@@ -1,4 +1,69 @@
-.Notfound{
-    font-size: 45px;
-    color: red;
+/* Vertical layout fix */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notfound-container {
+  flex: 1; /* Pushes footer to the bottom */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.error-code {
+  font-size: 100px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(45deg, #1d2671, #c33764);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.error-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  font-size: 24px;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.error-description {
+  color: #6b7280;
+  max-width: 400px;
+  margin: 0 auto 30px auto;
+}
+
+/* Button Styling */
+.home-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+}
+
+.home-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 65, 108, 0.4);
+  color: white;
+}
+
+/* Ensure footer spans full width */
+.footer {
+  width: 100%;
+  margin-top: auto;
 }

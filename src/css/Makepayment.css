@@ -1,4 +1,24 @@
-/* Fix the wide back button */
+/* Layout Fix */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+}
+
+.checkout-container {
+    flex: 1; /* Pushes footer down */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* Fix for full-width footer */
+.footer {
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Your existing styling */
 .back-btn {
     width: fit-content;
     padding: 0.5rem 1.5rem;
@@ -6,7 +26,6 @@
     transition: all 0.3s ease;
 }
 
-/* Make the product image container look integrated */
 .image-container {
     background-color: #f8f9fa;
     border-right: 1px solid #eee;
@@ -15,21 +34,14 @@
     justify-content: center;
 }
 
-/* Style the M-Pesa button for better hover effects */
 .mpesa-btn {
     background-color: #1e7e34 !important;
     border: none;
     padding: 14px;
     font-size: 1.1rem;
-    transition: all 0.2s ease-in-out;
 }
 
 .mpesa-btn:hover {
     background-color: #155d27 !important;
-    box-shadow: 0 4px 15px rgba(30, 126, 52, 0.4);
     transform: translateY(-2px);
-}
-
-.mpesa-btn:active {
-    transform: translateY(0);
 }

@@ -1,14 +1,22 @@
-/* Background */
-.signup-container {
-  height: 100vh;
+/* 1. The main wrapper for the entire page */
+.page-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* Stacks content on top of footer */
+  min-height: 100vh;      /* Ensures background covers full screen */
   background: linear-gradient(135deg, #4f46e5, #9333ea);
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Card */
+/* 2. The container for the card only */
+.signup-container {
+  flex: 1;               /* This pushes the footer to the very bottom */
+  display: flex;
+  justify-content: center;
+  align-items: center;   /* Centers the card in the remaining space */
+  padding: 40px 20px;
+}
+
+/* 3. The Card (remains mostly the same) */
 .signup-card {
   width: 100%;
   max-width: 400px;
@@ -25,6 +33,7 @@
   text-align: center;
   font-size: 26px;
   font-weight: bold;
+  margin-top: 0;
 }
 
 .subtitle {
@@ -46,6 +55,7 @@
   border: none;
   outline: none;
   font-size: 14px;
+  box-sizing: border-box; /* Crucial to keep inputs inside the card */
 }
 
 /* Button */
@@ -61,32 +71,19 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background: #e0e7ff;
+  transform: translateY(-1px);
 }
 
-button:disabled {
-  background: #aaa;
-  cursor: not-allowed;
+/* The Website Footer (from your previous code) */
+/* This will now stay at the bottom because of .page-wrapper */
+.footer {
+  width: 100%;
+  margin-top: auto; 
 }
 
-/* Messages */
-.loading {
-  color: #facc15;
-  text-align: center;
-}
-
-.success {
-  color: #4ade80;
-  text-align: center;
-}
-
-.error {
-  color: #f87171;
-  text-align: center;
-}
-
-/* Footer */
+/* Signup-specific Footer Link Text */
 .footer-text {
   text-align: center;
   margin-top: 15px;
@@ -94,7 +91,7 @@ button:disabled {
 }
 
 .footer-text a {
-  color: #fff;
+  color: #ffd369; /* Added some color for better visibility on dark bg */
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
 }

@@ -1,0 +1,27 @@
+.navbar {
+    transition: all 0.3s ease;
+    padding: 0.8rem 0;
+}
+
+.navbar-brand {
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important; /* Warning color on hover */
+}
+
+/* Specific styling for mobile menu */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: #0d6efd; /* Solid primary color on mobile */
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+}
