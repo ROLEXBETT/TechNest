@@ -1,0 +1,77 @@
+/* src/css/Getproducts.css */
+
+.main-wrapper {
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* --- THE FLOATING CART ICON --- */
+.cart-fixed-container {
+  position: fixed !important;
+  bottom: 30px;
+  right: 30px;
+  background-color: #191cce; /* Branded blue */
+  color: #ffffff;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cart-fixed-container:hover {
+  transform: scale(1.1);
+}
+
+.cart-badge-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #ff4d30; /* Red count badge */
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+/* Card Modern Styling */
+.product-card {
+  border: 1px solid rgba(13, 110, 253, 0.1) !important;
+  border-radius: 20px !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.img-container {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 20px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img { max-height: 100%; object-fit: contain; }
+
+.price-tag {
+  background: rgba(25, 135, 84, 0.1);
+  color: #198754;
+  padding: 5px 15px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.purchase-btn { background-color: #191cce; border: none; padding: 12px; }
+.btn-add-cart { background-color: #ff4d30; color: white; border: none; padding: 10px; }

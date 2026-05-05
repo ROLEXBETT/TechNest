@@ -37,7 +37,7 @@ function App() {
         <main className="flex-grow-1">
           <div className="container mt-4">
             <Routes>
-              {/* Home / Shop */}
+              Home / Shop
               <Route path="/" element={<Getproducts />} />
               
               {/* Auth Routes */}

@@ -26,12 +26,12 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link px-3" to="/">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link px-3" to="/getproducts">Shop</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link px-3" to="/addproducts text-warning">Sell Product</Link>
-            </li>
+            {/* <li className="nav-item"> */}
+              {/* <Link className="nav-link px-3" to="/getproducts">Shop</Link> */}
+            {/* </li> */}
+            {/* <li className="nav-item"> */}
+              {/* <Link className="nav-link px-3" to="/addproducts text-warning">Sell Product</Link> */}
+            {/* </li> */}
             
             {/* Auth Buttons */}
             <li className="nav-item ms-lg-3 mt-2 mt-lg-0">

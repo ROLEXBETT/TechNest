@@ -1,38 +1,40 @@
-.App {
-  text-align: center;
-}
+/* TechNest Global Styles */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin: 0;
+  background-color: #f1f5f9; /* The clean, cool-toned background you added */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .App-header {
-  background-color: #191cce;
-  min-height: 10vh;
+  background-color: #191cce; /* Your vibrant blue */
+  min-height: 80px; /* Standard navbar height */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(91, 106, 6);
+  justify-content: space-between;
+  padding: 0 5%;
+  color: #ffffff; /* Clean white text for navigation */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* If you have a specific class for the "TECHNEST" text */
+.logo-brand {
+  color: #FFD700; /* Golden yellow accent matching your logo in image_03d79f.jpg */
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-link:hover {
+  color: #FFD700;
 }
