@@ -1,108 +1,58 @@
 import axios from 'axios';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from './Loader';
 import { useNavigate } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa'; 
 import "../css/Getproducts.css";
 import Mycarousel from './Mycarousel';
-import Chatbot from './Chatbot';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-const IMG_URL = process.env.REACT_APP_IMG_URL || "https://rolexbett.alwaysdata.net/static/images/";
-const API_URL = process.env.REACT_APP_API_URL || "https://rolexbett.alwaysdata.net/api";
+import Chatbot from './Chatbot'; 
+// 1. Import the global context hook
+import { useCart } from './CartContext'; 
 
 const Getproducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  const [cart, setCart] = useState(() => {
-    try {
-      const savedCart = localStorage.getItem('cart');
-      return savedCart ? JSON.parse(savedCart) : [];
-    } catch {
-      return [];
-    }
-  });
+  
+  // 2. Use global state instead of local useState/localStorage here
+  const { cartItems, addToCart } = useCart();
 
   const navigate = useNavigate();
+  const img_url = "https://rolexbett.alwaysdata.net/static/images/";
 
-  // Persist cart to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
-
-  // Fetch products with AbortController to avoid state updates on unmounted component
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        setError("");
-        const response = await axios.get(`${API_URL}/get_products`, {
-          signal: controller.signal,
-        });
-        setProducts(response.data);
-      } catch (err) {
-        if (axios.isCancel(err)) return; // Ignore abort errors
-        setError("Failed to load products. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-
-    return () => controller.abort(); // Cleanup on unmount
-  }, []);
-
-  // Cart: support quantity tracking instead of duplicates
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existingIndex = prevCart.findIndex(
-        (item) => item.product_name === product.product_name
-      );
-
-      if (existingIndex !== -1) {
-        // Item already in cart — increment quantity
-        const updated = [...prevCart];
-        updated[existingIndex] = {
-          ...updated[existingIndex],
-          quantity: (updated[existingIndex].quantity || 1) + 1,
-        };
-        toast.info(`${product.product_name} quantity updated in cart.`);
-        return updated;
-      } else {
-        // New item — add with quantity 1
-        toast.success(`${product.product_name} added to cart!`);
-        return [...prevCart, { ...product, quantity: 1 }];
-      }
-    });
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get("https://rolexbett.alwaysdata.net/api/get_products");
+      setProducts(response.data);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError(err.message);
+    }
   };
 
-  // Total item count (sum of quantities)
-  const cartItemCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-  // Truncate description at word boundary
-  const truncateDescription = (text, maxLength = 60) => {
-    if (!text || text.length <= maxLength) return text;
-    return text.slice(0, text.lastIndexOf(' ', maxLength)) + '...';
+  // 3. Updated handler to use the context function
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    // Optional: Keep the alert or replace with a toast notification
+    alert(`${product.product_name} added to cart!`);
   };
 
   return (
     <div className="main-wrapper">
-
-      {/* Floating Cart Button (Bottom Right) */}
+      
+      {/* BLUE FLOATING CART (BOTTOM RIGHT) */}
       <div className="cart-fixed-container" onClick={() => navigate('/cart')}>
         <FaShoppingCart size={28} />
-        {cartItemCount > 0 && (
-          <span className="cart-badge-count">{cartItemCount}</span>
-        )}
+        {/* 4. Use cartItems.length from context */}
+        <span className="cart-badge-count">{cartItems.length}</span>
       </div>
 
-      {/* AI Assistant (Bottom Left) */}
       <Chatbot />
 
       <div className="container py-5">
@@ -115,32 +65,15 @@ const Getproducts = () => {
 
         <div className="mt-5">
           {loading && <Loader />}
-
-          {error && (
-            <div className="alert alert-danger text-center">
-              {error}
-              <button
-                className="btn btn-sm btn-outline-danger ms-3"
-                onClick={() => window.location.reload()}
-              >
-                Retry
-              </button>
-            </div>
-          )}
-
-          {!loading && !error && products.length === 0 && (
-            <div className="text-center py-5">
-              <p className="text-muted fs-5">No products available at the moment. Check back soon!</p>
-            </div>
-          )}
+          {error && <p className="alert alert-danger text-center">{error}</p>}
 
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 px-2">
-            {products.map((product) => (
-              <div className="col" key={product.id || product.product_name}>
-                <div className="card h-100 product-card">
+            {products.map((product, index) => (
+              <div className="col" key={index}>
+                <div className="card h-100 product-card shadow-sm">
                   <div className="img-container">
                     <img
-                      src={IMG_URL + product.product_photo}
+                      src={img_url + product.product_photo}
                       alt={product.product_name}
                       className="product-img"
                     />
@@ -148,12 +81,13 @@ const Getproducts = () => {
                   <div className="card-body d-flex flex-column text-center">
                     <h5 className="card-title fw-bold">{product.product_name}</h5>
                     <p className="card-text text-muted small flex-grow-1">
-                      {truncateDescription(product.product_description)}
+                      {product.product_description.slice(0, 60)}...
                     </p>
                     <div className="mt-auto pt-3">
                       <div className="mb-3">
-                        <span className="price-tag">
-                          KES {Number(product.product_cost).toLocaleString()}
+                        {/* 5. Displaying KSh with formatting */}
+                        <span className="price-tag fw-bold text-dark">
+                          KSh {Number(product.product_cost).toLocaleString()}
                         </span>
                       </div>
                       <button
@@ -164,7 +98,8 @@ const Getproducts = () => {
                       </button>
                       <button
                         className="btn btn-add-cart w-100 rounded-pill fw-bold"
-                        onClick={() => addToCart(product)}
+                        style={{ border: '2px solid #007bff', color: '#007bff' }}
+                        onClick={() => handleAddToCart(product)}
                       >
                         ADD TO CART
                       </button>
