@@ -1,40 +1,214 @@
-/* TechNest Global Styles */
-
-body {
+/* ===== RESET ===== */
+* {
   margin: 0;
-  background-color: #f1f5f9; /* The clean, cool-toned background you added */
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #191cce; /* Your vibrant blue */
-  min-height: 80px; /* Standard navbar height */
+/* ===== BODY ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #dbeafe, #e0f2fe, #f8fafc);
+  min-height: 100vh;
+}
+
+/* ===== APP ===== */
+.App {
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  width: 100%;
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+.logo span {
+  color: #facc15;
+}
+
+/* ===== SEARCH BAR ===== */
+.search-box {
+  display: flex;
+  gap: 10px;
+}
+
+.search-box input {
+  width: 280px;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+}
+
+.search-box button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #ff4b5c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background: #e63b4c;
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 5%;
-  color: #ffffff; /* Clean white text for navigation */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  gap: 15px;
 }
 
-/* If you have a specific class for the "TECHNEST" text */
-.logo-brand {
-  color: #FFD700; /* Golden yellow accent matching your logo in image_03d79f.jpg */
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-}
-
-.App-link {
-  color: #ffffff;
+.nav-links a {
   text-decoration: none;
-  margin: 0 15px;
+  color: white;
   font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-.App-link:hover {
-  color: #FFD700;
+.login-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.signup-btn {
+  background: #facc15;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===== PRODUCT GRID ===== */
+.products-container {
+  width: 90%;
+  margin: auto;
+  padding: 40px 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+/* ===== PRODUCT CARD ===== */
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== PRODUCT IMAGE ===== */
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* ===== PRODUCT TITLE ===== */
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+/* ===== PRODUCT DESCRIPTION ===== */
+.card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* ===== PRICE ===== */
+.price {
+  display: inline-block;
+  background: #ecfdf5;
+  color: #065f46;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* ===== BUTTONS ===== */
+.purchase-btn {
+  width: 100%;
+  background: #ff4b5c;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.purchase-btn:hover {
+  background: #e63b4c;
+}
+
+.cart-btn {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  background: #2563eb;
+  color: white;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-box input {
+    width: 200px;
+  }
+
+  .products-container {
+    grid-template-columns: 1fr;
+  }
 }
