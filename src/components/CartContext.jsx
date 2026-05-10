@@ -1,37 +1,63 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect
+} from 'react';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  // Load initial cart from localStorage so items don't disappear on refresh
+
+  // Load cart from localStorage
   const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem('technest_cart');
-    return savedCart ? JSON.parse(savedCart) : [];
+
+    return savedCart
+      ? JSON.parse(savedCart)
+      : [];
   });
 
-  // Save to localStorage whenever cart changes
+  // Save cart whenever it changes
   useEffect(() => {
-    localStorage.setItem('technest_cart', JSON.stringify(cartItems));
+    localStorage.setItem(
+      'technest_cart',
+      JSON.stringify(cartItems)
+    );
   }, [cartItems]);
 
+  // Add Product To Cart
   const addToCart = (product) => {
     setCartItems((prev) => [...prev, product]);
   };
 
+  // Remove Product From Cart
   const removeFromCart = (productId) => {
-    // We use product_id because that is the field name in your AlwaysData API response
-    setCartItems((prev) => prev.filter(item => item.product_id !== productId));
+    setCartItems((prev) =>
+      prev.filter(
+        (item) => item.product_id !== productId
+      )
+    );
   };
 
+  // Clear Cart
   const clearCart = () => {
     setCartItems([]);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
 
+// Custom Hook
 export const useCart = () => useContext(CartContext);

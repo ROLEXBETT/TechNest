@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -10,7 +10,7 @@ import Signin from './components/Signin';
 import Addproducts from './components/Addproducts';
 import Notfound from './components/Notfound';
 import Makepayment from './components/Makepayment';
-import Getproducts from './components/Getproducts'; 
+import Getproducts from './components/Getproducts';
 import Footer from './components/Footer';
 import Cart from './components/Cart';
 
@@ -19,26 +19,34 @@ function App() {
     <CartProvider>
       <Router>
         <div className="App d-flex flex-column min-vh-100">
+
+          {/* NAVBAR */}
           <Navbar />
 
+          {/* MAIN CONTENT */}
           <main className="flex-grow-1">
             <Routes>
-              {/* If someone goes to "/", they go to Signin first */}
-              <Route path="/" element={<Navigate to="/signin" />} />
-              
-              {/* This is the page users see AFTER logging in */}
+
+              {/* HOME PAGE = SHOP */}
+              <Route path="/" element={<Getproducts />} />
+
+              {/* OTHER PAGES */}
               <Route path="/shop" element={<Getproducts />} />
-              
               <Route path="/signup" element={<Signup />} />
               <Route path="/signin" element={<Signin />} />
               <Route path="/addproducts" element={<Addproducts />} />
               <Route path="/makepayment" element={<Makepayment />} />
               <Route path="/cart" element={<Cart />} />
+
+              {/* 404 PAGE */}
               <Route path="*" element={<Notfound />} />
+
             </Routes>
           </main>
 
+          {/* FOOTER */}
           <Footer />
+
         </div>
       </Router>
     </CartProvider>

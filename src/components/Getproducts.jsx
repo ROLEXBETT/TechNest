@@ -74,7 +74,7 @@ const Getproducts = () => {
       <div className="container py-5">
         <div className="text-center mb-5">
           <h1 className="display-5 fw-bold text-primary">Available Laptops 💻</h1>
-          <p className="text-muted">Premium tech at student-friendly prices</p>
+          <p className="text-muted">Premium tech - Smart Laptop Hub</p>
         </div>
 
         {(!searchQuery && sortOrder === "Newest") && <Mycarousel />}
